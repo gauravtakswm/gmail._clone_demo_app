@@ -33,7 +33,7 @@
     <string name="error_enter_first_name">Enter first name</string>
     <string name="error_enter_last_name">Enter last name</string>
     <string name="error_enter_password">Enter password</string>
-    <string name="error_user_strong_password">Use Strong password</string>
+    <string name="error_user_strong_password">Use Strong password(Min. length of password should be more than 8 characters,password should be consisting of minimum 1 upper letter,1 digit,1 special symbol) </string>
     <string name="error_enter_confirm_password">Enter confirm password</string>
     <string name="error_password_confirm_not_match">Password and confirm password doesn\'t match</string>
     <string name="error_wrong_password_reset">Wrong password.try again or click Forgot password to reset it.</string>

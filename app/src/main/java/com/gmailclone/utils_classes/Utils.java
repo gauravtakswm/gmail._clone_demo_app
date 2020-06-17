@@ -75,6 +75,8 @@ public class Utils {
     }
     public static boolean isValidPassword(final String password) {
 
+        if(password.length()<8)
+            return false;
         Pattern pattern;
         Matcher matcher;
 
