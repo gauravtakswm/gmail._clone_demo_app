@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.gmailclone.GmailCloneApplication;
-import com.gmailclone.views.InboxActivity;
-import com.gmailclone.views.InitialActivity;
+import com.gmailclone.views.activities.InboxActivity;
+import com.gmailclone.views.activities.InitialActivity;
 
 public class NavigationUtils {
     public static void launchInboxActivity(Activity activity)

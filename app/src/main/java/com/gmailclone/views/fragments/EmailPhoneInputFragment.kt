@@ -1,4 +1,4 @@
-package com.gmailclone.fragments
+package com.gmailclone.views.fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,15 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.gmailclone.utils_classes.AppConstants
-import com.gmailclone.views.InitialActivity
+import com.gmailclone.views.activities.InitialActivity
 
 import com.gmailclone.R
 import com.gmailclone.model.GmailUser
 import com.gmailclone.utils_classes.UserListPreference
 import com.gmailclone.utils_classes.Utils
-import kotlinx.android.synthetic.main.fragment_password_input.*
-import kotlinx.android.synthetic.main.fragment_username_input.*
+import kotlinx.android.synthetic.main.fragment_email_phone_input.emailTextInputEditText
+import kotlinx.android.synthetic.main.fragment_email_phone_input.emailTextInputLayout
 import kotlinx.android.synthetic.main.layout_next_button.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,14 +22,12 @@ import kotlinx.android.synthetic.main.layout_next_button.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-
-private var gmailObject: GmailUser? = null;
 /**
  * A simple [Fragment] subclass.
- * Use the [UsernameInputFragment.newInstance] factory method to
+ * Use the [EmailPhoneInputFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class UsernameInputFragment : Fragment(),View.OnClickListener {
+class EmailPhoneInputFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -48,23 +45,16 @@ class UsernameInputFragment : Fragment(),View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_username_input, container, false)
+        return inflater.inflate(R.layout.fragment_email_phone_input, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initClicksOfViews()
-        getBundleArguments();
         super.onViewCreated(view, savedInstanceState)
     }
-    private fun getBundleArguments() {
-        gmailObject = arguments?.getSerializable(AppConstants.BUNDLE_KEYS.GMAIL_USER) as GmailUser;
 
-    }
     fun initClicksOfViews() {
         btn_next?.setOnClickListener(this);
-      /*  emailTextInputEditText.setOnFocusChangeListener { view, b ->      Utils.removeErrorWithTextInput(emailTextInputLayout,emailTextInputEditText);
-
-        }*/
 
         emailTextInputEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
@@ -74,11 +64,9 @@ class UsernameInputFragment : Fragment(),View.OnClickListener {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Utils.removeErrorWithTextInput(emailTextInputLayout,emailTextInputEditText)
+                Utils.removeErrorWithTextInput(emailTextInputLayout, emailTextInputEditText)
             }
         })
-
-
     }
 
     companion object {
@@ -88,12 +76,12 @@ class UsernameInputFragment : Fragment(),View.OnClickListener {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment UsernameInputFragment.
+         * @return A new instance of fragment EmailPhoneInputFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            UsernameInputFragment().apply {
+            EmailPhoneInputFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
@@ -107,35 +95,45 @@ class UsernameInputFragment : Fragment(),View.OnClickListener {
 
             R.id.btn_next -> {
                 if (validation()) {
-
                     val bundle: Bundle = Bundle();
-                    gmailObject?.username = emailTextInputEditText.text.toString().trim()
-                    bundle.putSerializable(AppConstants.BUNDLE_KEYS.GMAIL_USER, gmailObject);
-                    (activity as InitialActivity).loadNextFragment(203, bundle);
+                    val gmailUser =
+                        GmailUser(emailTextInputEditText.text.toString(), "", "", "", "", "");
+                    bundle.putSerializable("gmail_user", gmailUser);
+                    (activity as InitialActivity).loadNextFragment(102, bundle);
                 }
             }
         }
     }
 
     private fun validation(): Boolean {
-        if(emailTextInputEditText?.text==null|| emailTextInputEditText?.text?.isEmpty()!!)
-        {
-            Utils.showErrorWithTextInput(activity,emailTextInputLayout,R.drawable.ic_error,getString(R.string.error_enter_email_phone))
+        if (emailTextInputEditText?.text == null || emailTextInputEditText?.text?.isEmpty()!!) {
+            Utils.showErrorWithTextInput(
+                activity,
+                emailTextInputLayout,
+                R.drawable.ic_error,
+                getString(R.string.error_enter_email_phone)
+            )
             return false;
-        }else
-        {
+        } else {
             val gmailUserList = UserListPreference.getGmailUserList();
-            for(gmailUser in gmailUserList)
-            {
-                if(gmailUser.username.toString().equals(emailTextInputEditText.text.toString(),true))
-                {
-                    Utils.showErrorWithTextInput(activity,emailTextInputLayout,R.drawable.ic_error,getString(R.string.error_this_is_taken))
+            for (gmailUser in gmailUserList) {
+                if (gmailUser.username.toString()
+                        .equals(emailTextInputEditText.text.toString(), true)
+                ) {
+                    Utils.showErrorWithTextInput(
+                        activity,
+                        emailTextInputLayout,
+                        R.drawable.ic_error,
+                        getString(R.string.error_already_taken)
+                    )
                     return false;
                 }
 
             }
+            Utils.removeErrorWithTextInput(emailTextInputLayout, emailTextInputEditText);
+            return true;
         }
-        Utils.removeErrorWithTextInput(emailTextInputLayout,emailTextInputEditText)
         return true;
     }
 }
+

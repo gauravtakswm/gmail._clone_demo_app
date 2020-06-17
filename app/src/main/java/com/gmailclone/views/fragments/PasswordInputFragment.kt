@@ -1,4 +1,4 @@
-package com.gmailclone.fragments
+package com.gmailclone.views.fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -31,7 +31,7 @@ private var gmailObject: GmailUser? = null;
  * Use the [PasswordInputFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PasswordInputFragment : Fragment(),View.OnClickListener {
+class PasswordInputFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -61,17 +61,16 @@ class PasswordInputFragment : Fragment(),View.OnClickListener {
 
     private fun getBundleArguments() {
         gmailObject = arguments?.getSerializable(AppConstants.BUNDLE_KEYS.GMAIL_USER) as GmailUser;
-tv_email.text = gmailObject?.username;
+        tv_email.text = gmailObject?.username;
     }
 
-    fun initClicksOfViews()
-    {
+    fun initClicksOfViews() {
         btn_next?.setOnClickListener(this);
         //tv_create_account.setOnClickListener(this)
         tv_forgot_password.setOnClickListener(this)
-       /* passwordTextInputEditText.setOnFocusChangeListener { view, b ->      Utils.removeErrorWithTextInput(passwordTextInputLayout,passwordTextInputEditText);
+        /* passwordTextInputEditText.setOnFocusChangeListener { view, b ->      Utils.removeErrorWithTextInput(passwordTextInputLayout,passwordTextInputEditText);
 
-        }*/
+         }*/
 
         passwordTextInputEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
@@ -81,12 +80,13 @@ tv_email.text = gmailObject?.username;
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Utils.removeErrorWithTextInput(passwordTextInputLayout,passwordTextInputEditText)
+                Utils.removeErrorWithTextInput(passwordTextInputLayout, passwordTextInputEditText)
             }
         })
 
 
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -108,27 +108,32 @@ tv_email.text = gmailObject?.username;
     }
 
     override fun onClick(view: View?) {
-        if(view?.id==R.id.btn_next)
-        {
-            if(validation()) {
+        if (view?.id == R.id.btn_next) {
+            if (validation()) {
                 CommonPreferences.setUserData(gmailObject)
                 NavigationUtils.launchInboxActivity(activity)
             }
-        }else if(view?.id==R.id.tv_forgot_password)
-        {
-            Utils.showToastMessage(activity?.applicationContext,getString(R.string.msg_coming_soon));
+        } else if (view?.id == R.id.tv_forgot_password) {
+            Utils.showToastMessage(
+                activity?.applicationContext,
+                getString(R.string.msg_coming_soon)
+            );
 
         }
     }
 
     private fun validation(): Boolean {
-        if(passwordTextInputEditText.text.toString().trim().equals(gmailObject?.password)) {
-            Utils.removeErrorWithTextInput(passwordTextInputLayout,passwordTextInputEditText);
+        if (passwordTextInputEditText.text.toString().trim().equals(gmailObject?.password)) {
+            Utils.removeErrorWithTextInput(passwordTextInputLayout, passwordTextInputEditText);
             return true
-        }else
-        {
+        } else {
             passwordTextInputEditText.setText("");
-            Utils.showErrorWithTextInput(activity,passwordTextInputLayout,R.drawable.ic_error,getString(R.string.error_wrong_password_reset))
+            Utils.showErrorWithTextInput(
+                activity,
+                passwordTextInputLayout,
+                R.drawable.ic_error,
+                getString(R.string.error_wrong_password_reset)
+            )
         }
         return false;
     }

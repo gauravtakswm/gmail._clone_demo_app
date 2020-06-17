@@ -1,4 +1,4 @@
-package com.gmailclone.fragments
+package com.gmailclone.views.fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -14,7 +14,6 @@ import com.gmailclone.utils_classes.*
 import kotlinx.android.synthetic.main.fragment_password_confirm_input.*
 import kotlinx.android.synthetic.main.fragment_password_confirm_input.passwordTextInputEditText
 import kotlinx.android.synthetic.main.fragment_password_confirm_input.passwordTextInputLayout
-import kotlinx.android.synthetic.main.fragment_password_input.*
 import kotlinx.android.synthetic.main.layout_next_button.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,7 +26,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PasswordConfirmInputFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PasswordConfirmInputFragment : Fragment(),View.OnClickListener {
+class PasswordConfirmInputFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -47,15 +46,18 @@ class PasswordConfirmInputFragment : Fragment(),View.OnClickListener {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_password_confirm_input, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initClicksOfViews()
         getBundleArguments()
         super.onViewCreated(view, savedInstanceState)
     }
+
     private fun getBundleArguments() {
         gmailObject = arguments?.getSerializable(AppConstants.BUNDLE_KEYS.GMAIL_USER) as GmailUser;
 
     }
+
     fun initClicksOfViews() {
         btn_next?.setOnClickListener(this);
 
@@ -68,7 +70,8 @@ class PasswordConfirmInputFragment : Fragment(),View.OnClickListener {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Utils.removeErrorWithTextInput(passwordTextInputLayout,passwordTextInputEditText)
+                //removing previous error if shown
+                Utils.removeErrorWithTextInput(passwordTextInputLayout, passwordTextInputEditText)
             }
         })
 
@@ -80,9 +83,15 @@ class PasswordConfirmInputFragment : Fragment(),View.OnClickListener {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Utils.removeErrorWithTextInput(confirmPasswordTextInputLayout,confirmPasswordTextInputEditText) }
+                //removing previous error if shown
+                Utils.removeErrorWithTextInput(
+                    confirmPasswordTextInputLayout,
+                    confirmPasswordTextInputEditText
+                )
+            }
         })
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
@@ -104,20 +113,19 @@ class PasswordConfirmInputFragment : Fragment(),View.OnClickListener {
     }
 
     override fun onClick(view: View?) {
-        when(view?.id)
-        {
-            R.id.btn_next->{
-                if(validation())
-                {
+        when (view?.id) {
+            R.id.btn_next -> {
+                if (validation()) {
 
-                     gmailObject?.password = passwordTextInputEditText.text.toString().trim()
+                    gmailObject?.password = passwordTextInputEditText.text.toString().trim()
                     gmailObject?.gmail_social_id = Utils.getCurrentTimeStamp();
+                    //generating social id value as get current stamp
                     val arrayListOfUsers = UserListPreference.getGmailUserList();
                     arrayListOfUsers.add(gmailObject);
                     UserListPreference.setGmailUserList(arrayListOfUsers);
+                    //adding the new gmail user into pre-existing user list
                     CommonPreferences.setUserData(gmailObject)
                     NavigationUtils.launchInboxActivity(activity)
-
 
 
                 }
@@ -130,38 +138,61 @@ class PasswordConfirmInputFragment : Fragment(),View.OnClickListener {
         }
     }
 
+    //validating the details of password and current password
     private fun validation(): Boolean {
         var isValidInput1: Boolean = true;
         var isValidInput2: Boolean = true;
 
-        if(passwordTextInputEditText?.text==null|| passwordTextInputEditText?.text?.toString()?.trim()?.isEmpty()!!)
-        {
-            Utils.showErrorWithTextInput(activity,passwordTextInputLayout,R.drawable.ic_error,getString(R.string.error_enter_password))
+        if (passwordTextInputEditText?.text == null || passwordTextInputEditText?.text?.toString()
+                ?.trim()?.isEmpty()!!
+        ) {
+            Utils.showErrorWithTextInput(
+                activity,
+                passwordTextInputLayout,
+                R.drawable.ic_error,
+                getString(R.string.error_enter_password)
+            )
             isValidInput1 = false;
-        }else if(!Utils.isValidPassword(passwordTextInputEditText?.text.toString().trim()))
-        {
-            Utils.showErrorWithTextInput(activity,passwordTextInputLayout,R.drawable.ic_error,getString(R.string.error_user_strong_password))
+        } else if (!Utils.isValidPassword(passwordTextInputEditText?.text.toString().trim())) {
+            Utils.showErrorWithTextInput(
+                activity,
+                passwordTextInputLayout,
+                R.drawable.ic_error,
+                getString(R.string.error_user_strong_password)
+            )
             isValidInput1 = false;
+
+        } else {
+            Utils.removeErrorWithTextInput(passwordTextInputLayout, passwordTextInputEditText);
 
         }
-        else
-        {
-            Utils.removeErrorWithTextInput(passwordTextInputLayout,passwordTextInputEditText);
-
-        }
-        if(confirmPasswordTextInputEditText?.text==null|| confirmPasswordTextInputEditText?.text?.toString()?.trim()?.isEmpty()!!)
-        {
-            Utils.showErrorWithTextInput(activity,confirmPasswordTextInputLayout,R.drawable.ic_error,getString(R.string.error_enter_confirm_password))
+        if (confirmPasswordTextInputEditText?.text == null || confirmPasswordTextInputEditText?.text?.toString()
+                ?.trim()?.isEmpty()!!
+        ) {
+            Utils.showErrorWithTextInput(
+                activity,
+                confirmPasswordTextInputLayout,
+                R.drawable.ic_error,
+                getString(R.string.error_enter_confirm_password)
+            )
             isValidInput2 = false;
 
-        }else if(!passwordTextInputEditText?.text.toString().trim().equals(confirmPasswordTextInputEditText?.text.toString().trim()))
-        {
-            Utils.showErrorWithTextInput(activity,confirmPasswordTextInputLayout,R.drawable.ic_error,getString(R.string.error_password_confirm_not_match))
+        } else if (!passwordTextInputEditText?.text.toString().trim()
+                .equals(confirmPasswordTextInputEditText?.text.toString().trim())
+        ) {
+            Utils.showErrorWithTextInput(
+                activity,
+                confirmPasswordTextInputLayout,
+                R.drawable.ic_error,
+                getString(R.string.error_password_confirm_not_match)
+            )
             isValidInput2 = false;
 
-        }else
-        {
-            Utils.removeErrorWithTextInput(confirmPasswordTextInputLayout,confirmPasswordTextInputEditText);
+        } else {
+            Utils.removeErrorWithTextInput(
+                confirmPasswordTextInputLayout,
+                confirmPasswordTextInputEditText
+            );
 
         }
 

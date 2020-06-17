@@ -51,7 +51,7 @@ public class Utils {
 
     public static ArrayList<GmailUser> getAssetJsonDataOfGmails(Context context) {
 
-
+//reading the json file from assets folder
         String json = null;
         try {
             InputStream is = context.getAssets().open("user_details.json");
@@ -73,6 +73,7 @@ public class Utils {
     {
         Toast.makeText(context,message,Toast.LENGTH_LONG).show();
     }
+    //verify the password is valid or not based on password length and password regex
     public static boolean isValidPassword(final String password) {
 
         if(password.length()<8)

@@ -21,15 +21,14 @@ public class GmailCloneApplication extends Application {
 
     private void getDefaultUserList() {
         ArrayList<GmailUser> gmailUserArrayList = UserListPreference.getGmailUserList();
-        if(gmailUserArrayList==null)
-        {
+        if (gmailUserArrayList == null) {
+            //reading the json data at initial stage
             gmailUserArrayList = Utils.getAssetJsonDataOfGmails(context);
-            UserListPreference.setGmailUserList(gmailUserArrayList);
+            UserListPreference.setGmailUserList(gmailUserArrayList); // saving the data into shared-preference
         }
     }
 
-    public static Context getContext()
-    {
+    public static Context getContext() {
         return context;
     }
 
