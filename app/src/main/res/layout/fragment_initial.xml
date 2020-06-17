@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.InitialFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_below="@+id/tv_signin"
+        android:id="@+id/layout_signin"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="14sp"
+            android:textColor="@color/colorTextBlack"
+            android:text="@string/label_with_your_google_account"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:textSize="14sp"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/colorTextBlue"
+            android:layout_centerHorizontal="true"
+            android:text="@string/label_learn_more"
+            />
+    </LinearLayout>s
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/hint_email_or_phone"
+        android:layout_below="@+id/layout_signin"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:digits="@string/digits_for_email_phone"
+            android:fontFamily="@font/lato_regular"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_forgot_email"
+        android:layout_below="@+id/emailTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/lato_bold"
+        android:textColor="@color/colorTextBlue"
+        android:text="@string/label_forgot_email"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_create_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/lato_semibold"
+        android:layout_alignTop="@+id/btn_next"
+        android:layout_alignBottom="@+id/btn_next"
+        android:gravity="center_vertical"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/colorTextBlue"
+        android:text="@string/label_create_account"
+        />
+    <include layout="@layout/layout_next_button"/>
+
+
+</RelativeLayout>

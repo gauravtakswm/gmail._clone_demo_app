@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.InitialFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_signin"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="14sp"
+        android:textColor="@color/colorTextBlack"
+        android:text="@string/hint_enter_your_name"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/firstTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/hint_first_name"
+        android:layout_below="@+id/tv_signin"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/firstTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:fontFamily="@font/lato_regular"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lastTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/hint_last_name"
+        android:layout_below="@+id/firstTextInputLayout"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lastTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:fontFamily="@font/lato_regular"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <include layout="@layout/layout_next_button"/>
+
+
+</RelativeLayout>

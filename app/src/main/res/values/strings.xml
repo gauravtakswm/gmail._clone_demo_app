@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">GMail Clone</string>
+    <string name="digits_for_email_phone">qwertyuiopasdfghjklzxcvbnm@._1234567890</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="label_sign_in">Sign in</string>
+    <string name="label_logout">Logout</string>
+    <string name="label_enter_phone_number">Enter your phone number or recovery email</string>
+    <string name="label_with_your_google_account">With your Google Account.</string>
+    <string name="label_learn_more">Learn More</string>
+    <string name="label_forgot_email">Forgot email?</string>
+    <string name="label_create_account">Create account</string>
+    <string name="label_btn_next">Next</string>
+    <string name="label_strong_password">Create a strong password with mix of letters, numbers and symbols</string>
+    <string name="label_create_gmail_address">Create a Gmail address for signing in to your Google account</string>
+    <string name="label_welcome">Welcome</string>
+    <string name="label_create_a_google_account">Create a Google Account</string>
+    <string name="label_how_you_will_signin">How you\'ll sign in</string>
+    <string name="label_create_strong_password">Create a strong password</string>
+
+    <string name="hint_phone_or_email">Phone number or email</string>
+    <string name="hint_email_or_phone">Email or Phone</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm">Confirm</string>
+    <string name="hint_enter_your_name">Enter your name</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+
+    <string name="error_already_taken">This is already taken,please choose use different email or phone number</string>
+    <string name="error_enter_email_phone">Enter an email or phone number</string>
+    <string name="error_enter_first_name">Enter first name</string>
+    <string name="error_enter_last_name">Enter last name</string>
+    <string name="error_enter_password">Enter password</string>
+    <string name="error_user_strong_password">Use Strong password</string>
+    <string name="error_enter_confirm_password">Enter confirm password</string>
+    <string name="error_password_confirm_not_match">Password and confirm password doesn\'t match</string>
+    <string name="error_wrong_password_reset">Wrong password.try again or click Forgot password to reset it.</string>
+    <string name="error_this_is_taken">This is already taken, please use different email or phone number</string>
+
+    <string name="msg_coming_soon">Coming soon...(under development)</string>
+
+</resources>

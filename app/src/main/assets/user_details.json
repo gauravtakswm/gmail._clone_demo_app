@@ -1,0 +1,51 @@
+
+  [
+    {
+      "username": "gauravtak@gmail.com",
+      "full_name": "Gaurav Tak",
+      "password": "Test@123",
+      "first_name": "Gaurav",
+      "last_name": "Tak",
+      "gmail_social_id": "86988727972187618"
+    },
+    {
+      "username": "testuser@gmail.com",
+      "full_name": "Test User",
+      "password": "Testuser@123",
+      "first_name": "Test",
+      "last_name": "User",
+      "gmail_social_id": "86765727972187618"
+    },
+    {
+      "username": "androiddev@jbsolutions.com",
+      "full_name": "Android Developer",
+      "password": "Test@123456",
+      "first_name": "Android",
+      "last_name": "Developer",
+      "gmail_social_id": "8676587472187618"
+    },
+    {
+      "username": "9876543210",
+      "full_name": "Mobile User1",
+      "password": "TestPhone@123",
+      "first_name": "Mobile",
+      "last_name": "User1",
+      "gmail_social_id": "8676587478197618"
+    },
+    {
+      "username": "9587497741",
+      "full_name": "Mobile User2",
+      "password": "TestMobile@123",
+      "first_name": "Mobile",
+      "last_name": "User2",
+      "gmail_social_id": "8676587438197638"
+    },
+    {
+      "username": "dev@google.com",
+      "full_name": "Google Developer",
+      "password": "testDev@123",
+      "first_name": "Google",
+      "last_name": "Developer",
+      "gmail_social_id": "8613187478197618"
+    }
+  ]
